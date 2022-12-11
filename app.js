@@ -10,13 +10,14 @@ buttonToTranslate.addEventListener("click", buttonClickHandler)
 
 
 function buttonClickHandler(){
-    var inputText = txtInput.value;
+    var inputText = textInput.value;
+    var urlAfterAppendingText = getTranslationURL(inputText);
   
-    fetch(getTranslationURL(inputText))
+    fetch(urlAfterAppendingText)
     .then(response => response.json())
     .then(json => {
       var translatedText = json.contents.translated;
-      outputBox.innerText = translatedText;
+      textOutput.innerText = translatedText;
       console.log("Translated Text: " + translatedText);
     })
     .catch(error => {
